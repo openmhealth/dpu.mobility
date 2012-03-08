@@ -1,0 +1,4 @@
+export(geodistance)
+export(mobility.smooth)
+export(mobility.summarize)
+import(geosphere)

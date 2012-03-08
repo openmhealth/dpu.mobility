@@ -1,0 +1,15 @@
+Package: dpu.mobility
+Type: Package
+Title: Mobility DPU functions
+Version: 0.1
+Date: 2012-03-10
+Author: Jeroen Ooms
+Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
+Description: Mobility DPU functions
+License: Apache2
+Imports:
+    geosphere
+Collate:
+    'geodistance.R'
+    'mobility.smooth.R'
+    'mobility.summarize.R'
