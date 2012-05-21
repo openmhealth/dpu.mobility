@@ -11,9 +11,18 @@
 #' @examples geodistance(c(-74.0064, -118.2430, -74.0064), c(40.7142, 34.0522, 40.7142)) #NY - LA - NY
 #' geodistance(c(-74.0064, -118.2430, -74.0064), c(40.7142, 34.0522, 40.7142), "miles") #NY - LA - NY
 #' @export
-geodistance <- function(long, lat, unit="km"){
+geodistance <- function(long, lat, unit="km", smooth=TRUE, na.rm=TRUE, total=TRUE){
+	if(isTRUE(na.rm)){
+		long <- na.omit(long);
+		lat  <- na.omit(lat);
+	}
 	if(length(long) != length(lat) || length(long) < 2){
 		stop("parameters 'lon' and 'lat' should be vectors of equal length, and at least length 2.");
+	}
+	
+	if(isTRUE(smooth)){
+		long <- lowess(long)$y;
+		lat <- lowess(lat)$y;
 	}
 	
 	steps <- length(long)-1
@@ -23,12 +32,21 @@ geodistance <- function(long, lat, unit="km"){
 	for(i in 1:steps){
 		alldist[i] <- distHaversine(c(long[i], lat[i]), c(long[i+1], lat[i+1]));		
 	}
+	alldist <- alldist / 1000;
 	
 	if(unit == "miles"){
 		alldist <- alldist * 0.621371192;
 	}
 	
-	return(sum(alldist))
+	if(unit == "meters"){
+		alldist <- alldist * 1000;
+	}	
+	
+	if(isTRUE(total)){
+		return(sum(alldist));		
+	} else {
+		return(alldist);				
+	}
 }
 
 

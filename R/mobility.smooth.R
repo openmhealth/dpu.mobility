@@ -10,6 +10,7 @@
 #' data.frame(original= test, smoothed = mobility.smooth(test));
 #' @export
 mobility.smooth <- function(x, strength=5){
+	if(length(x) < strength) return(x);
 	f <- strength/length(x);
 	input <- factor(x);
 	#define smoothing function
