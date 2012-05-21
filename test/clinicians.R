@@ -6,10 +6,11 @@ library(reshape2);
 
 days = 14
 
-username = "sink.thaw";
-username = "ohmage.ht";
-username = "ohmage.estrin"
 
+
+username = "ohmage.estrin"
+username = "sink.thaw"; 
+username = "ohmage.ht";
 
 oh.login("ohmage.ooms", "vohohdai.g", "https://dev.mobilizingcs.org/app");
 daterange <- as.character(as.Date(Sys.time()) - 1:days);
@@ -40,6 +41,10 @@ newdata <- melt(alldata[,c("date", "drive", "day", "still", "walk")], measure.va
 ggplot(aes(x=date, y=value, alpha=day), data=newdata) + geom_bar(aes(fill=mobility), stat="identity", position="stack") +
 		scale_alpha_discrete(range=c(1, 0.6), guide="none") ;
 
+#only walk
+ggplot(aes(x=date, y=value, alpha=day), data=subset(newdata, mobility=="walk")) + geom_bar(aes(fill=mobility), stat="identity", position="stack") +
+		scale_alpha_discrete(range=c(1, 0.6), guide="none") ;
+
 #Break up per day:
 debdays <- split(debdata, debdata$date);
 homevecs <- lapply(debdays, home);
@@ -59,7 +64,7 @@ leavegethome <- sapply(debdays, leavehome);
 leavegethome <- t(leavegethome);
 hometable$leavetime = leavegethome[,1]
 hometable$hometime = leavegethome[,2]
-ggplot(aes(x=date), data=na.omit(hometable)) + geom_line(aes(y=leavetime), alpha=.5) + opts(title="time of leaving home");
+qplot(x=date, y=leavetime, data=na.omit(hometable), ylim=c(0, 24)) + geom_line(alpha=.5) + opts(title="time of leaving home");
 
 #time between waking up and leaving
 hometable$interval <- apply(cbind(0, hometable$leavetime - 5),1,max,0)
