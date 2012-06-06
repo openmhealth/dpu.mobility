@@ -16,8 +16,12 @@ geodistance <- function(long, lat, unit="km", smooth=TRUE, na.rm=TRUE, total=TRU
 		long <- na.omit(long);
 		lat  <- na.omit(lat);
 	}
-	if(length(long) != length(lat) || length(long) < 2){
+	if(length(long) != length(lat)){
 		stop("parameters 'lon' and 'lat' should be vectors of equal length, and at least length 2.");
+	}
+	
+	if(length(long) < 2){
+		return(NA)
 	}
 	
 	if(isTRUE(smooth)){

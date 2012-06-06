@@ -12,9 +12,10 @@ walkspeed.day <- function(mydf, minimum, smooth, getspeed){
 		#get distance from long/lat
 		myinterval$distance <- apply(myinterval, 1, function(x) {
 			x <- as.list(x);
-			start <- x$start;
-			stop  <- x$stop;
-			geodistance(mydf$lo[start:stop], mydf$la[start:stop], unit="miles");
+			startpoint <- x$start;
+			stoppoint  <- x$stop;
+
+			geodistance(mydf$lo[startpoint:stoppoint], mydf$la[startpoint:stoppoint], unit="miles");
 		});
 	
 		#calculate speed
