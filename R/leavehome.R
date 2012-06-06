@@ -11,7 +11,10 @@ leavehome <- function(mydf){
 	mydf$home <- as.logical(home(mydf));
 	
 	#we assume that the person starts and ends the day at home.
-	leavetime <- mydf[min(which(!mydf$home)),];
+	#Note: We assume here that home as been determined as 4AM location. Hence, 
+	#observations before 4AM cannot be classified as 'leaving home'
+
+	leavetime <- mydf[min(which(!mydf$home && abs(as.numeric(as.character(mydf$ts, format="%H"))) >= 4)),];
 	hometime   <- mydf[max(which(!mydf$home)),];
 	
 	#return timestamps

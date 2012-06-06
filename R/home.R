@@ -13,11 +13,15 @@ home <- function(mydf, homeradius=0.1){
 	}
 	
 	#we assume a dataframe with a ts value.
+	#search for observation closest to 4am
 	minpoint <- which.min(abs(as.numeric(as.character(mydf$ts, format="%H.%M")) - 4));
 	homerecord <- mydf[minpoint,];
 	
-	#check if we have any datapoint between 00:00 and 08:00
-	if(abs(as.numeric(as.character(homerecord$ts, format="%H.%M"))-4) > 4) return(factor(rep(NA, nrow(mydf)), levels=c(T,F)));
+	#check if this observation is between 00:00 and 08:00
+	if(abs(as.numeric(as.character(homerecord$ts, format="%H.%M"))-4) > 4){
+		#no observations between 00:00 and 08:00. We are not going to guess where home is.
+		return(factor(rep(NA, nrow(mydf)), levels=c(T,F)));
+	}
 	
 	homelo <- homerecord$lo;
 	homela <- homerecord$la;
