@@ -1,5 +1,6 @@
 walkspeed.day <- function(mydf, minimum, smooth, getspeed){
-	m <- mydf$m;
+	m <- as.character(mydf$m);
+	m[m=="run"] <- "walk";
 	if(isTRUE(smooth)){
 		m <- mobility.smooth(m);
 	}
@@ -57,10 +58,10 @@ plot.walkspeed <- function(walkspeed, labels=TRUE){
 	myplot <- ggplot(aes(x=Date, y=lengths), data=walkspeed) + geom_bar(stat="identity", position="stack", color="darkgray");
 	if(isTRUE(labels)){
 		if(isTRUE(getspeed)){
-			myplot <- myplot + geom_text(aes(label=paste(round(speed,2))), color="white", position="stack", vjust=2) +
+			myplot <- myplot + geom_text(aes(label=paste(round(speed,2))), color="white", position="stack", vjust=1.1) +
 				opts(title=paste("Walking periods of", minimum, ">= min with avg. speed in MPH"))
 		} else {
-			myplot <- myplot + geom_text(aes(label=paste(round(lengths,2))), color="white", position="stack", vjust=2) +
+			myplot <- myplot + geom_text(aes(label=paste(round(lengths,2))), color="white", position="stack", vjust=1.1) +
 					opts(title=paste("Walking periods of", minimum, ">= min with values in minutes."))		
 		}
 	} else {
