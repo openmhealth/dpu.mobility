@@ -35,7 +35,6 @@ walkspeed.day <- function(mydf, minimum, smooth, getspeed){
 #' @param mydf mobility data object
 #' @param minimum minimum span of walking period to be included
 #' @param smooth should data be smoothed (T/F)
-#' @return 
 #' @export
 walkspeed <- function(mydf, minimum=6, smooth=TRUE, getspeed=TRUE){
 	splitdata <- split(mydf, as.Date(mydf$ts));

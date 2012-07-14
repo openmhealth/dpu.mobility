@@ -9,3 +9,12 @@ Description: Mobility DPU functions
 License: Apache2
 Imports:
     geosphere
+Collate:
+    'geodistance.R'
+    'home.R'
+    'intervals.R'
+    'leavehome.R'
+    'mobility.smooth.R'
+    'mobility.summarize.R'
+    'painreport.R'
+    'walkspeed.R'

@@ -2,7 +2,8 @@
 \alias{geodistance}
 \title{Calculate total distance traveled}
 \usage{
-  geodistance(long, lat, unit = "km")
+  geodistance(long, lat, unit = "km", smooth = TRUE,
+    na.rm = TRUE, total = TRUE)
 }
 \arguments{
   \item{long}{vector of longitude coordinates; length equal
