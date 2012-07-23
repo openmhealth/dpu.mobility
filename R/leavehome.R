@@ -11,12 +11,19 @@ leavehome <- function(mydf){
 	mydf$home <- as.logical(home(mydf));
 	
 	#we assume that the person starts and ends the day at home.
-	#Note: We assume here that home as been determined as 4AM location. Hence, 
-	#observations before 4AM cannot be classified as 'leaving home'
+	#Note: We assume here that home as been determined as 3AM location. Hence, 
+	#observations before 3AM cannot be classified as 'leaving home'
 	if(all(is.na(mydf$home))){
 		return(c(NA,NA));
 	}
-	leavetime <- mydf[min(which(!mydf$home & abs(as.numeric(as.character(mydf$ts, format="%H"))) >= 4)),];
+	
+	#If we have less than an hour of 'home' points, it was most likely misclassified.
+	if(sum(!mydf$home) < 60){
+		return(c(NA,NA));
+	}
+	
+	#we look for the lowest point after 3AM where the person was not home
+	leavetime <- mydf[min(c(999999, which(!mydf$home & abs(as.numeric(as.character(mydf$ts, format="%H"))) >= 3))),];
 	hometime   <- mydf[max(which(!mydf$home)),];
 	
 	#return timestamps
