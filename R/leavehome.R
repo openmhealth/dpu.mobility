@@ -7,6 +7,15 @@
 #' @export
 leavehome <- function(mydf){
 	
+	#we only use ts lo la
+	mydf <- mydf[c("ts", "lo", "la")];
+	mydf <- na.omit(mydf);	
+	
+	#we can't classify home with less than one hour of data.
+	if(nrow(mydf) < 60){
+		return(c(NA,NA));
+	}	
+	
 	#calculate home or not
 	mydf$home <- as.logical(home(mydf));
 	
