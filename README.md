@@ -18,7 +18,7 @@ Calculates the total distance between a number of long/lat locations using Haver
 Approximates the "daily diameter" (greatest distance between any two points in a given set). Default result in Kilometers. For example, for some points on UCLA campus:
 
   curl https://public.opencpu.org/R/pub/dpu.mobility/diameter/json -d 'long=[-118.453989, -118.450041, -118.444376, -118.439569, -118.439484, -118.444204, -118.444118, -118.441887]&lat=[34.073777, 34.069547, 34.064001, 34.077225, 34.070400, 34.070008, 34.069085, 34.070578]'
-	curl https://public.opencpu.org/R/pub/dpu.mobility/diameter/json -d 'long=[-118.453989, -118.450041, -118.444376, -118.439569, -118.439484, -118.444204, -118.444118, -118.441887]&lat=[34.073777, 34.069547, 34.064001, 34.077225, 34.070400, 34.070008, 34.069085, 34.070578]&unit="miles"'
+  curl https://public.opencpu.org/R/pub/dpu.mobility/diameter/json -d 'long=[-118.453989, -118.450041, -118.444376, -118.439569, -118.439484, -118.444204, -118.444118, -118.441887]&lat=[34.073777, 34.069547, 34.064001, 34.077225, 34.070400, 34.070008, 34.069085, 34.070578]&unit="miles"'
 
 ### mobility.smooth
 
