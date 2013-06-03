@@ -1,7 +1,7 @@
 Package: dpu.mobility
 Type: Package
 Title: Mobility DPU functions
-Version: 0.1
+Version: 0.2
 Date: 2012-03-10
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
@@ -9,12 +9,3 @@ Description: Mobility DPU functions
 License: Apache2
 Imports:
     geosphere
-Collate:
-    'geodistance.R'
-    'home.R'
-    'intervals.R'
-    'leavehome.R'
-    'mobility.smooth.R'
-    'mobility.summarize.R'
-    'painreport.R'
-    'walkspeed.R'

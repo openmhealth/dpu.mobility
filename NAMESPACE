@@ -1,3 +1,4 @@
+export(diameter)
 export(geodistance)
 export(home)
 export(intervals)
