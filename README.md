@@ -6,7 +6,8 @@ This R package contains some DPU functions related to mobile health and mobility
 
 OpenCPU allows POST request content types `application/x-www-form-urlencoded`, `multipart/form-data` or `application/json`. For example:
 
-	curl https://public.opencpu.org/ocpu/library/dpu.mobility/R/geodistance/json -d 'long=[-74.0064,-118.2430,-74.0064]&lat=[40.7142,34.0522,40.7142]'
+	curl https://public.opencpu.org/ocpu/library/dpu.mobility/R/geodistance/json -d \
+	 'long=[-74.0064,-118.2430,-74.0064]&lat=[40.7142,34.0522,40.7142]'
 
 This is equivalent to:
 
